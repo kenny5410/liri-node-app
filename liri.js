@@ -1,8 +1,5 @@
 require("dotenv").config();
-
-//var keys = require("./keys.js");
-
-//var spotify = new spotify(keys.spotify);
+var keys = require("./keys.js");
 
 //The variable for the node argument
 var command = process.argv[2];
@@ -40,11 +37,35 @@ function concert() {
 };
 
 function spotify() {
-    console.log("spotify-this-song");
-    //Artist
-    //The song's name
-    //A preview link of the song from Spotify
-    //The album that the song is from
+    var nodeArgs = process.argv;
+    var songName = "";
+    for (var i = 3; i < nodeArgs.length; i++) {
+
+        if (i > 3 && i < nodeArgs.length) {
+            songName = songName + "+" + nodeArgs[i];
+        } 
+        else {
+        songName += nodeArgs[i];
+        }
+    }
+
+    var Spotify = require('node-spotify-api');
+    var spotify = new Spotify({
+        id: 'cfa32cb3a22049b79c3261ffb85568d1',
+        secret: '7efadf245aa34bde9297303930632409'
+      });
+
+    spotify.search({type: 'track', query: songName }, function(err, data) {
+        if (err) {
+            return console.log('Error occured: ' + err);
+        };
+        console.log("Song Info")
+        console.log("------------------------")
+        console.log("Artist: " + data.tracks.items[0].artists[0].name);
+        console.log("Song Name: " + data.tracks.items[0].name);
+        console.log("Spotify Preview Link: " + data.tracks.items[0].external_urls.spotify);
+        console.log("Album: " + data.tracks.items[0].album.name);
+    });
 };
 
 function movie() {
