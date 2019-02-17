@@ -78,15 +78,38 @@ function spotify() {
 };
 
 function movie() {
-    console.log("movie-this");
-    //Title of the movie.
-    //Year the movie came out.
-    //IMDB Rating of the movie.
-    //Rotten Tomatoes Rating of the movie.
-    //Country where the movie was produced.
-    //Language of the movie.
-    //Plot of the movie.
-    //Actors in the movie.
+    var axios = require("axios");
+    var nodeArgs = process.argv;
+    var movieName = "";
+    for (var i = 3; i < nodeArgs.length; i++) {
+
+        if (i > 3 && i < nodeArgs.length) {
+            movieName = movieName + "+" + nodeArgs[i];
+        }
+        else {
+        movieName += nodeArgs[i];
+        }
+    }
+    if ( movieName === "") {
+        movieName = "mr+nobody";
+    }
+
+    var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
+    axios.get(queryUrl).then(
+        function(response) {
+            console.log(queryUrl);
+            console.log("Movie Info")
+            console.log("------------------------")
+            console.log("Movie Title: " + response.data.Title);
+            console.log("Release Year: " + response.data.Year);
+            console.log("IMDB Rating: " + response.data.Ratings[0].Value);
+            console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
+            console.log("Country(s) Produced: " + response.data.Country);
+            console.log("Language(s): " + response.data.Language);
+            console.log("Plot: " + response.data.Plot);
+            console.log("Actors: " + response.data.Actors);
+        }
+    )
 };
 
 function doThis() {
