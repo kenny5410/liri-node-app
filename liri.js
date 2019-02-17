@@ -19,6 +19,7 @@ switch (command) {
     doThis();       
 } 
 
+//Concert this function
 function concert() {
     var nodeArgs = process.argv;
     var artistName = "";
@@ -33,7 +34,10 @@ function concert() {
     }
     var moment = require("moment");
     var axios = require("axios");
-    axios.get("https://rest.bandsintown.com/artists/" + artistName + "/events?app_id=codingbootcamp").then(function(response) {
+    axios.get("https://rest.bandsintown.com/artists/" + artistName + "/events?app_id=codingbootcamp").then(function(err, response) {
+        if (err) {
+            return console.log("Error occured: " + err)
+        };
         console.log("Concert Info")
         console.log("------------------------")
         console.log("Venue: " + response.data[0].venue["name"]);
@@ -45,6 +49,7 @@ function concert() {
     });
 };
 
+//Spotify this function
 function spotify() {
     var nodeArgs = process.argv;
     var songName = "";
@@ -66,7 +71,7 @@ function spotify() {
 
     spotify.search({type: 'track', query: songName }, function(err, data) {
         if (err) {
-            return console.log('Error occured: ' + err);
+            return console.log("Error occured: " + err);
         };
         console.log("Song Info")
         console.log("------------------------")
@@ -77,6 +82,7 @@ function spotify() {
     });
 };
 
+//Movie this function
 function movie() {
     var axios = require("axios");
     var nodeArgs = process.argv;
@@ -112,7 +118,16 @@ function movie() {
     )
 };
 
+//Do what it says function
 function doThis() {
-    console.log("do-what-it-says");
-    //run the sporify-this-song for "I Want it That Way"
-}
+    var fs = require("fs");
+    fs.readFile("random.txt", "utf-8", function(err, data) {
+        if (err) {
+            return console.log("Error occured: " + err);
+        }
+        var dataArr = data.split(",");
+        console.log(dataArr[1]);
+        process.argv[3] = dataArr[1];
+        spotify();
+    })
+};
