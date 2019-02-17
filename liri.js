@@ -35,7 +35,7 @@ function concert() {
         console.log("Location: " + response.data[0].venue["city"] + ", " + response.data[0].venue["country"]);
         //console.log("The date of the concert is: " + response);
         var realDate = response.data[0].datetime;
-        console.log("Date & Time: " + moment().format("dddd, MMMM Do YYYY, h:mm:ss a", realDate));
+        console.log("Date & Time: " + moment(realDate).format("dddd, MMMM Do YYYY, h:mm:ss a"));
     });
 };
 
