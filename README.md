@@ -1,4 +1,4 @@
-# liri-node-app
+# Liri Bot
 
 # Concert This
 How it works: In the command line type in node concert-this (Type in an artist name)
