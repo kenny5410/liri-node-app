@@ -2,16 +2,16 @@
 
 # Concert This
 How it works: 
-1. In the command line type in **node concert-this (Type in an artist name)**
+1. In the command line type in **node liri.js concert-this (Type in an artist name)**
 
 # Spotify This
 How it works: 
-1. In the command line type in **node spotify-this-song (Type in a song title)**
+1. In the command line type in **node liri.js spotify-this-song (Type in a song title)**
 
 # Movie This
 How it works: 
-1. In the command line type in **node movie-this (Type in a movie title)**
+1. In the command line type in **node liri.js movie-this (Type in a movie title)**
 
 # Do What It Says
 How it works: 
-1. In the command line type in **node do-what-it-says**
+1. In the command line type in **node liri.js do-what-it-says**
