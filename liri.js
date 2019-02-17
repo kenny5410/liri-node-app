@@ -20,11 +20,20 @@ switch (command) {
 } 
 
 function concert() {
+    var nodeArgs = process.argv;
+    var artistName = "";
+    for (var i = 3; i < nodeArgs.length; i++) {
 
-    var artist = process.argv[3];
+        if (i > 3 && i < nodeArgs.length) {
+            artistName = artistName + "+" + nodeArgs[i];
+        } 
+        else {
+        artistName += nodeArgs[i];
+        }
+    }
     var moment = require("moment");
     var axios = require("axios");
-    axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp").then(function(response) {
+    axios.get("https://rest.bandsintown.com/artists/" + artistName + "/events?app_id=codingbootcamp").then(function(response) {
         console.log("Concert Info")
         console.log("------------------------")
         console.log("Venue: " + response.data[0].venue["name"]);
