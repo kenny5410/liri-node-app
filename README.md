@@ -3,7 +3,7 @@
 ## What
 Liri is a node based application that allows a user to enter arguments in the command line to gather inforamtion about a concert, song, or movie.
 ## How
-Four different commands/arguments can be used in the application included concert-this, spotify-this, movie-this, and do-what-it-says. The below steps will walk you through the process of using each of these arguments. The following Node packages are used to make this application work.
+Four different commands/arguments can be used in the application including concert-this, spotify-this, movie-this, and do-what-it-says. The below steps will walk you through the process of using each of these arguments. The following Node packages are used to make this application work.
 
 - Node Spotify API
 - Axios 
