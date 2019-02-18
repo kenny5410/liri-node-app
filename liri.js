@@ -34,10 +34,7 @@ function concert() {
     }
     var moment = require("moment");
     var axios = require("axios");
-    axios.get("https://rest.bandsintown.com/artists/" + artistName + "/events?app_id=codingbootcamp").then(function(err, response) {
-        if (err) {
-            return console.log("Error occured: " + err)
-        };
+    axios.get("https://rest.bandsintown.com/artists/" + artistName + "/events?app_id=codingbootcamp").then(function(response) {
         console.log("Concert Info")
         console.log("------------------------")
         console.log("Venue: " + response.data[0].venue["name"]);
