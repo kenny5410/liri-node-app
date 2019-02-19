@@ -46,8 +46,8 @@ Four different commands/arguments can be used in the application including conce
 2. The below information will be returned about the movie that was entered.
 - The title of the movie
 - The year the movie came out
-- The IMBD Rating of the movie
-- The Rotten Tomatoes Rating of the movie
+- The IMDB rating of the movie
+- The Rotten Tomatoes rating of the movie
 - The country(s) where the movie was produced
 - The language(s) of the movie
 - The plot of the movie
