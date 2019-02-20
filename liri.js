@@ -67,15 +67,18 @@ function spotify() {
       });
 
     spotify.search({type: 'track', query: songName }, function(err, data) {
-        if (err) {
-            return console.log("Error occured: " + err);
+        if ( err ) {
+            return console.log("The Sign - by Ace of Base");
+        } else {
+            for ( var i = 0; i < data.tracks.items.length; i++) {
+                console.log("Song Info" + 
+                "\n------------------------" + "\nArtist: " + 
+                data.tracks.items[i].artists[0].name + "\nSong Name: " + 
+                data.tracks.items[i].name + "\nSpotify Preview Link: " + 
+                data.tracks.items[i].external_urls.spotify + "\nAlbum: " + 
+                data.tracks.items[i].album.name);
+            };
         };
-        console.log("Song Info")
-        console.log("------------------------")
-        console.log("Artist: " + data.tracks.items[0].artists[0].name);
-        console.log("Song Name: " + data.tracks.items[0].name);
-        console.log("Spotify Preview Link: " + data.tracks.items[0].external_urls.spotify);
-        console.log("Album: " + data.tracks.items[0].album.name);
     });
 };
 
