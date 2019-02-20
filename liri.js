@@ -35,14 +35,17 @@ function concert() {
     var moment = require("moment");
     var axios = require("axios");
     axios.get("https://rest.bandsintown.com/artists/" + artistName + "/events?app_id=codingbootcamp").then(function(response) {
-        console.log("Concert Info")
-        console.log("------------------------")
-        console.log("Venue: " + response.data[0].venue["name"]);
-        //console.log("The location of the venue is: " + response);
-        console.log("Location: " + response.data[0].venue["city"] + ", " + response.data[0].venue["country"]);
-        //console.log("The date of the concert is: " + response);
-        var realDate = response.data[0].datetime;
-        console.log("Date & Time: " + moment(realDate).format("dddd, MMMM Do YYYY, h:mm:ss a"));
+        for ( var i = 0; i < response.data.length; i++ ) {
+            console.log("Concert Info")
+            console.log("------------------------")
+            console.log("Venue: " + response.data[i].venue["name"]);
+            //console.log("The location of the venue is: " + response);
+            console.log("Location: " + response.data[i].venue["city"] + ", " + response.data[i].venue["country"]);
+            //console.log("The date of the concert is: " + response);
+            var realDate = response.data[i].datetime;
+            //Used Moment to turn the data and time into a more readable format
+            console.log("Date & Time: " + moment(realDate).format("dddd, MMMM Do YYYY, h:mm:ss a"));
+        }
     });
 };
 
@@ -58,18 +61,13 @@ function spotify() {
         else {
         songName += nodeArgs[i];
         }
-    }
+    };
 
     var Spotify = require('node-spotify-api');
-    var spotify = new Spotify({
-        id: 'cfa32cb3a22049b79c3261ffb85568d1',
-        secret: '7efadf245aa34bde9297303930632409'
-      });
+    var spotify = new Spotify(keys.spotify);
 
-    spotify.search({type: 'track', query: songName }, function(err, data) {
-        if ( err ) {
-            return console.log("The Sign - by Ace of Base");
-        } else {
+    spotify.search({type: 'track', query: songName }, function(error, data) {
+        if ( songName != null ) {
             for ( var i = 0; i < data.tracks.items.length; i++) {
                 console.log("Song Info" + 
                 "\n------------------------" + "\nArtist: " + 
@@ -77,7 +75,10 @@ function spotify() {
                 data.tracks.items[i].name + "\nSpotify Preview Link: " + 
                 data.tracks.items[i].external_urls.spotify + "\nAlbum: " + 
                 data.tracks.items[i].album.name);
+
             };
+        } else {
+            console.log("The Sign - by Ace of Base");
         };
     });
 };
